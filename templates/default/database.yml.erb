@@ -1,0 +1,25 @@
+# MySQL (default setup).  Versions 4.1 and 5.0 are recommended.
+#
+# Install the MySQL driver:
+#   gem install mysql
+# On MacOS X:
+#   gem install mysql -- --include=/usr/local/lib
+# On Windows:
+#   There is no gem for Windows.  Install mysql.so from RubyForApache.
+#   http://rubyforge.org/projects/rubyforapache
+#
+# And be sure to use new-style password hashing:
+#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+
+<% @database_configs.each do |environ, settings| %>
+
+<%= environ %>:
+  adapter: mysql2
+  encoding: utf8
+  database: <%= settings[:db_name] %>
+  username: <%= settings[:db_user] %>
+  password: <%= settings[:db_pass] %>
+  host: <%= settings[:db_host] %>
+  reconnect: true
+
+<% end %>
